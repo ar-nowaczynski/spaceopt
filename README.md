@@ -1,4 +1,4 @@
-# SpaceOpt: optimize discrete search spaces with predictive modeling
+# SpaceOpt: optimize discrete search spaces via predictive modeling
 
 ## Usage
 
