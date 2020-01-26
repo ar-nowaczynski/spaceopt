@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(name='spaceopt',
       version='0.1.0',
-      description='Search space optimization via predictive modelling',
+      description='Search space optimization via predictive modeling',
       author='Arkadiusz Nowaczynski',
       author_email='ar.nowaczynski@gmail.com',
       url='https://github.com/ar-nowaczynski/spaceopt',
