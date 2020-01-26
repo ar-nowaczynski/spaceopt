@@ -69,10 +69,9 @@ class SpaceOpt:
         spoints_df = spoints_df.sort_values(by=self.target_name,
                                             ascending=self._is_ascending_sorting())
         spoints_df = self.space.decode_variables(spoints_df)
+        spoints_df = spoints_df[self.space.variable_names]
         spoints_df = spoints_df.iloc[:num_spoints]
         spoints = spoints_df.to_dict('records')
-        for spoint in spoints:
-            self._verify_evaluated_spoint(evaluated_spoint=spoint)
         if num_spoints == 1:
             return spoints[0]
         return spoints
