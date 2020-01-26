@@ -1,7 +1,7 @@
 from spaceopt.variable import Variable
 
 
-class Space():
+class Space:
 
     def __init__(self, search_space):
         self._verify_search_space(search_space)

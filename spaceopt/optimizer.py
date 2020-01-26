@@ -4,7 +4,7 @@ import lightgbm as lgb
 from spaceopt.space import Space
 
 
-class SpaceOpt():
+class SpaceOpt:
 
     _ALLOWED_OBJECTIVE_VALUES = ('maximize', 'minimize', 'max', 'min')
     _FIT_PREDICT_MIN_EVALUATED_SPOINTS = 2
