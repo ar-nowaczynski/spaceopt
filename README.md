@@ -23,7 +23,7 @@ y = feval(spoint)
 print(y)  # 0.123456
 ```
 
-and if you want to find points that maximize or minimize some objective, <b>in a better way than random search</b>, then use SpaceOpt:
+and if you want to find points that maximize or minimize evaluation objective, <b>in a better way than random search</b>, then use SpaceOpt:
 
 ```python
 from spaceopt import SpaceOpt
