@@ -52,26 +52,26 @@ More examples [here](./examples/).
 
 ## Installation
 
-```
+```bash
 $ pip install spaceopt
 ```
 
 ## Advanced
 
 - get multiple points by setting `num_spoints`:
-```
+```python
 spoint_list = spaceopt.get_random(num_spoints=2)
 # or
 spoint_list = spaceopt.fit_predict(num_spoints=5)
 ```
 
-- control exploitation behaviour by adjusting `sample_size` (default=10000), which is the number of unevaluated points sampled for ranking (decreasing `sample_size` increses exploration):
-```
+- control exploitation behaviour by adjusting `sample_size` (default=10000), which is the number of candidates sampled for ranking (decreasing `sample_size` increses exploration):
+```python
 spoint = spaceopt.fit_predict(sample_size=100)
 ```
 
 - add your own evaluation points to SpaceOpt:
-```
+```python
 my_spoint = {'a': 8, 'b': -4.4, 'c': 256, 'd': 'typeY', 'e': False}
 my_spoint['y'] = evaluation_function(my_spoint)
 spaceopt.append_evaluated_spoint(my_spoint)
