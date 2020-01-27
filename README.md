@@ -3,7 +3,6 @@
 [![PyPI version](https://img.shields.io/pypi/v/spaceopt?color=1)](https://pypi.org/project/spaceopt/)
 [![license](https://img.shields.io/pypi/l/spaceopt)](https://github.com/ar-nowaczynski/spaceopt)
 
-
 SpaceOpt is an optimization algorithm for discrete search spaces, that uses gradient boosting regression to find the most promising points for the evaluation by predicting the evaluation score. Training data is gathered on the fly with the preference to perform random or human-guided exploration at the beginning.
 
 ## Usage
@@ -59,7 +58,7 @@ $ pip install spaceopt
 
 ## Advanced
 
-- get multiple points by `num_spoints`:
+- get multiple points thanks to `num_spoints`:
 ```
 spoint_list = spaceopt.get_random(num_spoints=2)
 # or
