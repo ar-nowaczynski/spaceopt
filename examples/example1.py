@@ -1,7 +1,7 @@
 from spaceopt import SpaceOpt
 
 
-def feval(spoint):
+def evaluation_function(spoint):
     ''' Synthetic evaluation function.
 
     Global minimum is at:
@@ -70,7 +70,7 @@ def main():
             spoint = spaceopt.fit_predict(num_spoints=1, sample_size=1000)
             spoint_type = 'fit_predict'
 
-        spoint['y'] = feval(spoint)
+        spoint['y'] = evaluation_function(spoint)
         spaceopt.append_evaluated_spoint(spoint)
 
         if spoint['y'] < best_y:
