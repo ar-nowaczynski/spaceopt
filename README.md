@@ -35,7 +35,7 @@ spaceopt = SpaceOpt(search_space=search_space,
 for iteration in range(200):
 
     if iteration < 20:
-        spoint = spaceopt.get_random()  # exploration
+        spoint = spaceopt.get_random()   # exploration
     else:
         spoint = spaceopt.fit_predict()  # exploitation
 
