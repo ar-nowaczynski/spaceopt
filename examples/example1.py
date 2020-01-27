@@ -71,7 +71,6 @@ def main():
             spoint_type = 'fit_predict'
 
         spoint['y'] = feval(spoint)
-
         spaceopt.append_evaluated_spoint(spoint)
 
         if spoint['y'] < best_y:
