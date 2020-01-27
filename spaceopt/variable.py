@@ -2,7 +2,7 @@ import random
 from collections import Counter
 
 
-class Variable():
+class Variable:
 
     _ALLOWED_VTYPES = (float, int, str, bool)
 

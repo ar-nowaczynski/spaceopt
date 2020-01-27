@@ -153,7 +153,7 @@ def test_SpaceOpt_fit_predict():
     for i in range(10):
         spoint = spaceopt.fit_predict(num_spoints=1, num_boost_round=100, sample_size=100)
         assert isinstance(spoint, dict)
-        spoint['y'] = 0.95
+        spoint['y'] = random.uniform(-1, 1)
         spaceopt.append_evaluated_spoint(spoint)
 
 
