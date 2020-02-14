@@ -188,8 +188,8 @@ class SpaceOpt:
         indent = ' ' * 4
         innerstr = []
         innerstr += [str(self.space).replace('\n', '\n' + indent)]
-        innerstr += ['target_name={}'.format(repr(self.target_name))]
-        innerstr += ['objective={}'.format(self.objective)]
+        innerstr += [f'target_name={repr(self.target_name)}']
+        innerstr += [f'objective={self.objective}']
         innerstr = indent + (',\n' + indent).join(innerstr)
         outstr = '{cls}(\n{innerstr}\n)'.format(
             cls=self.__class__.__name__,

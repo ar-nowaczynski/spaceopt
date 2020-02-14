@@ -79,10 +79,9 @@ def main():
             print(f'{iteration}, y={round(best_y, 6)}, {spoint_type}, {best_spoint}')
 
         if best_y < -6.289:
-            print('global minimum has been found')
-            print('{}/{} = {}'.format(iteration,
-                                      spaceopt.space.size,
-                                      iteration / spaceopt.space.size))
+            print('global minimum has been found\n'
+                  f'{iteration}/{spaceopt.space.size} = '
+                  f'{iteration / spaceopt.space.size}')
             return
 
 

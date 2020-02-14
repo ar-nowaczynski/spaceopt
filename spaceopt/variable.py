@@ -70,10 +70,10 @@ class Variable:
     def __str__(self):
         indent = ' ' * 4
         innerstr = [
-            'name={}'.format(repr(self.name)),
-            'values={}'.format(self.values),
-            'vtype={}'.format(self.vtype),
-            'is_categorical={}'.format(self.is_categorical),
+            f'name={repr(self.name)}',
+            f'values={self.values}',
+            f'vtype={self.vtype}',
+            f'is_categorical={self.is_categorical}',
         ]
         innerstr = indent + (',\n' + indent).join(innerstr)
         outstr = '{cls}(\n{innerstr}\n)'.format(
