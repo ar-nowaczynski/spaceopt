@@ -67,7 +67,7 @@ class Space:
         innerstr = []
         innerstr += [str(variable).replace('\n', '\n' + indent)
                      for variable in self.variables]
-        innerstr += ['size={size}'.format(size=self.size)]
+        innerstr += [f'size={self.size}']
         innerstr = indent + (',\n' + indent).join(innerstr)
         outstr = '{cls}(\n{innerstr}\n)'.format(
             cls=self.__class__.__name__,

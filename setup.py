@@ -5,12 +5,12 @@ HERE = pathlib.Path(__file__).parent
 README = (HERE / 'README.md').read_text()
 
 setup(name='spaceopt',
-      version='0.1.1',
+      version='0.1.2',
       license='MIT',
       description='Search space optimization via gradient boosting regression',
       long_description=README,
       long_description_content_type='text/markdown',
-      author='Arkadiusz Nowaczynski',
+      author='Arkadiusz Nowaczyński',
       author_email='ar.nowaczynski@gmail.com',
       url='https://github.com/ar-nowaczynski/spaceopt',
       packages=['spaceopt'],
