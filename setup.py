@@ -5,7 +5,7 @@ HERE = pathlib.Path(__file__).parent
 README = (HERE / 'README.md').read_text()
 
 setup(name='spaceopt',
-      version='0.1.1',
+      version='0.1.2',
       license='MIT',
       description='Search space optimization via gradient boosting regression',
       long_description=README,
