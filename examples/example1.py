@@ -55,7 +55,9 @@ def search_space():
 
 def main():
 
-    spaceopt = SpaceOpt(search_space=search_space(), target_name='y', objective='min')
+    spaceopt = SpaceOpt(search_space=search_space(),
+                        target_name='y',
+                        objective='min')
     print(spaceopt)
 
     best_spoint = None
