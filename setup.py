@@ -1,14 +1,14 @@
 import pathlib
 from setuptools import setup
 
-HERE = pathlib.Path(__file__).parent
-README = (HERE / 'README.md').read_text()
+README_PATH = pathlib.Path(__file__).parent / 'README.md'
+README_TEXT = README_PATH.read_text()
 
 setup(name='spaceopt',
       version='0.1.2',
       license='MIT',
       description='Search space optimization via gradient boosting regression',
-      long_description=README,
+      long_description=README_TEXT,
       long_description_content_type='text/markdown',
       author='Arkadiusz Nowaczyński',
       author_email='ar.nowaczynski@gmail.com',
