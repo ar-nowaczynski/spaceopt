@@ -1,5 +1,6 @@
 # SpaceOpt: optimize discrete search space via gradient boosting regression
-[![Python](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+
+[![Python](https://img.shields.io/badge/Python-3.6%20%7C%203.7%20%7C%203.8-blue)](https://www.python.org/downloads/)
 [![PyPI version](https://img.shields.io/pypi/v/spaceopt?color=1)](https://pypi.org/project/spaceopt/)
 [![license](https://img.shields.io/pypi/l/spaceopt)](https://github.com/ar-nowaczynski/spaceopt)
 
@@ -48,7 +49,7 @@ for iteration in range(200):
     spaceopt.append_evaluated_spoint(spoint)
 ```
 
-More examples [here](./examples/).
+More examples [here](https://github.com/ar-nowaczynski/spaceopt/tree/master/examples).
 
 ## Installation
 
@@ -79,8 +80,8 @@ spaceopt.append_evaluated_spoint(my_spoint)
 
 - be creative about how to use SpaceOpt;
 
-- learn more by reading the code, there are only 3 classes: [SpaceOpt](spaceopt/optimizer.py), [Space](spaceopt/space.py) and [Variable](spaceopt/variable.py).
+- learn more by reading the code, there are only 3 classes: [SpaceOpt](https://github.com/ar-nowaczynski/spaceopt/blob/master/spaceopt/optimizer.py), [Space](https://github.com/ar-nowaczynski/spaceopt/blob/master/spaceopt/space.py) and [Variable](https://github.com/ar-nowaczynski/spaceopt/blob/master/spaceopt/variable.py).
 
 ## License
 
-MIT License (see [LICENSE](./LICENSE)).
+MIT License (see [LICENSE](https://github.com/ar-nowaczynski/spaceopt/blob/master/LICENSE)).
