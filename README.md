@@ -6,6 +6,12 @@
 
 SpaceOpt is an optimization algorithm for discrete search spaces that uses gradient boosting regression to find the most promising candidates for evaluation by predicting their evaluation score. Training data is gathered sequentially and random or human-guided exploration can be easily incorporated at any stage.
 
+## Installation
+
+```bash
+$ pip install spaceopt
+```
+
 ## Usage
 
 If you have discrete search space, for example:
@@ -50,12 +56,6 @@ for iteration in range(200):
 ```
 
 More examples [here](https://github.com/ar-nowaczynski/spaceopt/tree/master/examples).
-
-## Installation
-
-```bash
-$ pip install spaceopt
-```
 
 ## Advanced
 
