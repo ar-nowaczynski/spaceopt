@@ -1,9 +1,11 @@
+from typing import Dict, List
+import pandas as pd
 from spaceopt.variable import Variable
 
 
 class Space:
 
-    def __init__(self, search_space):
+    def __init__(self, search_space: Dict[str, list]) -> None:
         self._verify_search_space(search_space)
         self.variables = []
         for name, values in search_space.items():
@@ -11,34 +13,34 @@ class Space:
             self.variables.append(variable)
 
     @property
-    def size(self):
+    def size(self) -> int:
         size = 1
         for variable in self.variables:
             size *= len(variable.values)
         return size
 
     @property
-    def variable_names(self):
+    def variable_names(self) -> List[str]:
         return [variable.name for variable in self.variables]
 
     @property
-    def categorical_names(self):
+    def categorical_names(self) -> List[str]:
         return [variable.name for variable in self.variables if variable.is_categorical]
 
-    def sample(self):
+    def sample(self) -> dict:
         return {variable.name: variable.sample() for variable in self.variables}
 
-    def encode_variables(self, df):
+    def encode_variables(self, df: pd.DataFrame) -> pd.DataFrame:
         for variable in self.variables:
             df = variable.encode(df)
         return df
 
-    def decode_variables(self, df):
+    def decode_variables(self, df: pd.DataFrame) -> pd.DataFrame:
         for variable in self.variables:
             df = variable.decode(df)
         return df
 
-    def verify_spoint(self, spoint):
+    def verify_spoint(self, spoint: dict) -> None:
         for variable in self.variables:
             if variable.name not in spoint:
                 raise ValueError(f'spoint={spoint} should have variable '
@@ -55,14 +57,14 @@ class Space:
                                  f'with value={spoint[variable.name]}, which is '
                                  f'outside of the defined list of values={variable.values}.')
 
-    def _verify_search_space(self, search_space):
+    def _verify_search_space(self, search_space: Dict[str, list]) -> None:
         if not isinstance(search_space, dict):
             raise TypeError(f'search_space is of type {type(search_space)}, '
                             f'but it should be of type {dict}.')
         if len(search_space) == 0:
             raise ValueError('search_space is empty.')
 
-    def __str__(self):
+    def __str__(self) -> str:
         indent = ' ' * 4
         innerstr = []
         innerstr += [str(variable).replace('\n', '\n' + indent)

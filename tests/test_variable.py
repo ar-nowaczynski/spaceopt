@@ -3,7 +3,7 @@ from spaceopt.variable import Variable
 random.seed(123456)
 
 
-def test_Variable__init__():
+def test_Variable__init__() -> None:
     import numpy as np
 
     try:
@@ -55,12 +55,12 @@ def test_Variable__init__():
         assert str(e) == "All values=[1, 5, 7] for a Variable named 'dd' are of type <class 'numpy.int32'>, which is not allowed. Please use one of: (<class 'float'>, <class 'int'>, <class 'str'>, <class 'bool'>)."
 
 
-def test_Variable_is_categorical():
+def test_Variable_is_categorical() -> None:
     variable = Variable(name='var', values=['v1', '5', '*'])
     assert variable.is_categorical
 
 
-def test_Variable__str__():
+def test_Variable__str__() -> None:
     assert str(Variable(name='ff', values=[1.0, 4.5, 7.8])) == "Variable(\n    name='ff',\n    values=[1.0, 4.5, 7.8],\n    vtype=<class 'float'>,\n    is_categorical=False\n)"
 
     assert str(Variable(name='bb', values=[True, False])) == "Variable(\n    name='bb',\n    values=[True, False],\n    vtype=<class 'bool'>,\n    is_categorical=False\n)"

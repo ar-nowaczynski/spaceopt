@@ -1,9 +1,10 @@
 import random
+from typing import Dict
 from spaceopt.space import Space
 random.seed(123456)
 
 
-def search_space():
+def search_space() -> Dict[str, list]:
     return {
         'a': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         'b': [-5.5, -4.4, -3.3, -2.2, -1.1, 0.0, 1.1, 2.2, 3.3, 4.4, 5.5],
@@ -14,7 +15,7 @@ def search_space():
     }
 
 
-def test_Space__init__():
+def test_Space__init__() -> None:
     try:
         Space(search_space={'a', 'l', 'z'})
     except Exception as e:
@@ -28,22 +29,22 @@ def test_Space__init__():
         assert str(e) == "search_space is empty."
 
 
-def test_Space_size():
+def test_Space_size() -> None:
     space = Space(search_space=search_space())
     assert space.size == 5544
 
 
-def test_Space_variable_names():
+def test_Space_variable_names() -> None:
     space = Space(search_space=search_space())
     assert set(space.variable_names) == set(search_space().keys())
 
 
-def test_Space_categorical_names():
+def test_Space_categorical_names() -> None:
     space = Space(search_space=search_space())
     assert set(space.categorical_names) == {'d'}
 
 
-def test_Space_verify_spoint():
+def test_Space_verify_spoint() -> None:
     space = Space(search_space=search_space())
 
     spoint = {'a': 16, 'b': 3.3, 'd': 'typeX', 'e': False}
@@ -68,5 +69,5 @@ def test_Space_verify_spoint():
         assert str(e) == "spoint has variable named 'c' with value=700, which is outside of the defined list of values=[128, 256, 512, 1024]."
 
 
-def test_Space__str__():
+def test_Space__str__() -> None:
     assert str(Space(search_space=search_space())) == "Space(\n    Variable(\n        name='a',\n        values=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],\n        vtype=<class 'int'>,\n        is_categorical=False\n    ),\n    Variable(\n        name='b',\n        values=[-5.5, -4.4, -3.3, -2.2, -1.1, 0.0, 1.1, 2.2, 3.3, 4.4, 5.5],\n        vtype=<class 'float'>,\n        is_categorical=False\n    ),\n    Variable(\n        name='c',\n        values=[128, 256, 512, 1024],\n        vtype=<class 'int'>,\n        is_categorical=False\n    ),\n    Variable(\n        name='d',\n        values=['typeX', 'typeY', 'typeZ'],\n        vtype=<class 'str'>,\n        is_categorical=True\n    ),\n    Variable(\n        name='e',\n        values=[True, False],\n        vtype=<class 'bool'>,\n        is_categorical=False\n    ),\n    Variable(\n        name='f',\n        values=[10000],\n        vtype=<class 'int'>,\n        is_categorical=False\n    ),\n    size=5544\n)"

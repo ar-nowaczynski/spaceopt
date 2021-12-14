@@ -1,9 +1,10 @@
 import random
+from typing import Dict
 from spaceopt import SpaceOpt
 random.seed(123456)
 
 
-def search_space():
+def search_space() -> Dict[str, list]:
     return {
         'a': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         'b': [-5.5, -4.4, -3.3, -2.2, -1.1, 0.0, 1.1, 2.2, 3.3, 4.4, 5.5],
@@ -14,7 +15,7 @@ def search_space():
     }
 
 
-def test_SpaceOpt__init__():
+def test_SpaceOpt__init__() -> None:
     SpaceOpt(search_space=search_space(), target_name='y', objective='min')
     SpaceOpt(search_space=search_space(), target_name='y', objective='max')
     SpaceOpt(search_space=search_space(), target_name='score', objective='maximize')
@@ -51,7 +52,7 @@ def test_SpaceOpt__init__():
         assert str(e) == "target_name='b' should not be in search space variables: ['a', 'b', 'c', 'd', 'e', 'f']."
 
 
-def test_SpaceOpt_append_evaluated_spoint():
+def test_SpaceOpt_append_evaluated_spoint() -> None:
     spaceopt = SpaceOpt(search_space=search_space(), target_name='y', objective='min')
 
     try:
@@ -75,7 +76,7 @@ def test_SpaceOpt_append_evaluated_spoint():
     spaceopt.append_evaluated_spoint({'a': 16, 'b': 3.3, 'c': 512, 'd': 'typeX', 'e': False, 'f': 10000, 'y': 1.0})
 
 
-def test_SpaceOpt_get_random():
+def test_SpaceOpt_get_random() -> None:
     spaceopt = SpaceOpt(search_space=search_space(), target_name='y', objective='min')
 
     try:
@@ -111,7 +112,7 @@ def test_SpaceOpt_get_random():
     assert set(spoint.keys()) == set(spoints[-1].keys())
 
 
-def test_SpaceOpt_fit_predict():
+def test_SpaceOpt_fit_predict() -> None:
     spaceopt = SpaceOpt(search_space=search_space(), target_name='y', objective='min')
 
     try:
@@ -157,7 +158,7 @@ def test_SpaceOpt_fit_predict():
         spaceopt.append_evaluated_spoint(spoint)
 
 
-def test_SpaceOpt__sample_random_spoints():
+def test_SpaceOpt__sample_random_spoints() -> None:
     spaceopt = SpaceOpt(search_space=search_space(), target_name='y', objective='min')
 
     try:
@@ -181,7 +182,7 @@ def test_SpaceOpt__sample_random_spoints():
     assert len(spoints) == 1
 
 
-def test_SpaceOpt__sample_unevaluated_unique_spoints():
+def test_SpaceOpt__sample_unevaluated_unique_spoints() -> None:
     spaceopt = SpaceOpt(search_space=search_space(), target_name='y', objective='min')
 
     try:
@@ -222,7 +223,7 @@ def test_SpaceOpt__sample_unevaluated_unique_spoints():
         assert str(e) == 'could not sample any new spoints - search_space is fully explored or random sampling was unfortunate.\nsearch_space.size = 2\nnum evaluated spoints = 2\nnum unevaluated spoints = 0'
 
 
-def test_SpaceOpt__str__():
+def test_SpaceOpt__str__() -> None:
     spaceopt = SpaceOpt(search_space=search_space(), target_name='y', objective='min')
 
     assert str(spaceopt) == "SpaceOpt(\n    Space(\n        Variable(\n            name='a',\n            values=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],\n            vtype=<class 'int'>,\n            is_categorical=False\n        ),\n        Variable(\n            name='b',\n            values=[-5.5, -4.4, -3.3, -2.2, -1.1, 0.0, 1.1, 2.2, 3.3, 4.4, 5.5],\n            vtype=<class 'float'>,\n            is_categorical=False\n        ),\n        Variable(\n            name='c',\n            values=[128, 256, 512, 1024],\n            vtype=<class 'int'>,\n            is_categorical=False\n        ),\n        Variable(\n            name='d',\n            values=['typeX', 'typeY', 'typeZ'],\n            vtype=<class 'str'>,\n            is_categorical=True\n        ),\n        Variable(\n            name='e',\n            values=[True, False],\n            vtype=<class 'bool'>,\n            is_categorical=False\n        ),\n        Variable(\n            name='f',\n            values=[10000],\n            vtype=<class 'int'>,\n            is_categorical=False\n        ),\n        size=5544\n    ),\n    target_name='y',\n    objective=min\n)"
