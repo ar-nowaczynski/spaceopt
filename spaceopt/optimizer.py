@@ -74,8 +74,7 @@ class SpaceOpt:
             valid_sets=[dataset],
             num_boost_round=num_boost_round,
             categorical_feature=self.space.categorical_names,
-            early_stopping_rounds=10,
-            verbose_eval=False,
+            callbacks=[lgb.early_stopping(stopping_rounds=10, verbose=False)],
         )
         spoints = self._sample_unevaluated_unique_spoints(sample_size=sample_size)
         spoints_df = pd.DataFrame(spoints)
