@@ -34,51 +34,61 @@ class Variable:
             df[self.name] = df[self.name].map(decoding)
         return df
 
-    def _verify_name(self, name: str) -> None:
-        if not isinstance(name, str):
-            raise TypeError(f'Invalid name={name} for a {self.__class__.__name__}. '
-                            f'Provided name is of type {type(name)}, '
-                            f'but it should be of type {str}.')
-
-    def _verify_values(self, values: list) -> None:
-        if not isinstance(values, list):
-            raise TypeError(f'{self.__class__.__name__} named {repr(self.name)} '
-                            f'has values={values} '
-                            f'of type {type(values)}, '
-                            f'but it should be of type {list}.')
-        if len(values) == 0:
-            raise ValueError(f'{self.__class__.__name__} named {repr(self.name)} '
-                             f'has an empty list of values.')
-
     def _get_vtype_from_values(self) -> type:
         vtypes = [type(value) for value in self.values]
         cnt = Counter(vtypes)
         if len(cnt) != 1:
-            value_types = '\n'.join([f'{v} : {type(v)}' for v in self.values])
-            raise RuntimeError(f'Multiple value types for a {self.__class__.__name__} '
-                               f'named {repr(self.name)} '
-                               f'with values={self.values}. '
-                               f'Encountered value types:\n{value_types}\n'
-                               f'All values should be of the same type. '
-                               f'Allowed value types: {self._ALLOWED_VTYPES}.')
+            value_types = "\n".join([f"{v} : {type(v)}" for v in self.values])
+            raise RuntimeError(
+                f"Multiple value types for a {self.__class__.__name__}"
+                f" named {repr(self.name)}"
+                f" with values={self.values}."
+                f" Encountered value types:\n{value_types}\n"
+                "All values should be of the same type."
+                f" Allowed value types: {self._ALLOWED_VTYPES}."
+            )
         vtype = cnt.most_common()[0][0]
         if vtype not in self._ALLOWED_VTYPES:
-            raise RuntimeError(f'All values={self.values} for a {self.__class__.__name__} '
-                               f'named {repr(self.name)} '
-                               f'are of type {vtype}, which is not allowed. '
-                               f'Please use one of: {self._ALLOWED_VTYPES}.')
+            raise RuntimeError(
+                f"All values={self.values} for a {self.__class__.__name__}"
+                f" named {repr(self.name)}"
+                f" are of type {vtype}, which is not allowed."
+                f" Please use one of: {self._ALLOWED_VTYPES}."
+            )
         return vtype
 
+    def _verify_name(self, name: str) -> None:
+        if not isinstance(name, str):
+            raise TypeError(
+                f"Invalid name={name} for a {self.__class__.__name__}."
+                f" Provided name is of type {type(name)},"
+                f" but it should be of type {str}."
+            )
+
+    def _verify_values(self, values: list) -> None:
+        if not isinstance(values, list):
+            raise TypeError(
+                f"{self.__class__.__name__} named {repr(self.name)}"
+                f" has values={values}"
+                f" of type {type(values)},"
+                f" but it should be of type {list}."
+            )
+        if len(values) == 0:
+            raise ValueError(
+                f"{self.__class__.__name__} named {repr(self.name)}"
+                " has an empty list of values."
+            )
+
     def __str__(self) -> str:
-        indent = ' ' * 4
+        indent = " " * 4
         innerstr = [
-            f'name={repr(self.name)}',
-            f'values={self.values}',
-            f'vtype={self.vtype}',
-            f'is_categorical={self.is_categorical}',
+            f"name={repr(self.name)}",
+            f"values={self.values}",
+            f"vtype={self.vtype}",
+            f"is_categorical={self.is_categorical}",
         ]
-        innerstr = indent + (',\n' + indent).join(innerstr)
-        outstr = '{cls}(\n{innerstr}\n)'.format(
+        innerstr = indent + (",\n" + indent).join(innerstr)
+        outstr = "{cls}(\n{innerstr}\n)".format(
             cls=self.__class__.__name__,
             innerstr=innerstr,
         )
