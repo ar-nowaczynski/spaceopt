@@ -46,13 +46,13 @@ from spaceopt import SpaceOpt
 
 spaceopt = SpaceOpt(search_space=search_space,
                     target_name='y',
-                    objective='max')     # or 'min'
+                    objective='maximize')  # or 'minimize'
 
 for iteration in range(200):
     if iteration < 20:
-        spoint = spaceopt.get_random()   # exploration
+        spoint = spaceopt.get_random()     # exploration
     else:
-        spoint = spaceopt.fit_predict()  # exploitation
+        spoint = spaceopt.fit_predict()    # exploitation
 
     spoint['y'] = evaluation_function(spoint)
     spaceopt.append_evaluated_spoint(spoint)
