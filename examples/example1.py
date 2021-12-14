@@ -44,7 +44,7 @@ def search_space() -> dict:
 def main() -> None:
     spaceopt = SpaceOpt(search_space=search_space(),
                         target_name='y',
-                        objective='minimize')  # or 'maximize'
+                        objective='minimize')
     print(spaceopt)
 
     best_spoint = None
