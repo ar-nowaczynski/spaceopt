@@ -14,14 +14,14 @@ $ pip install spaceopt
 
 ## Usage
 
-If you have discrete search space, for example:
+If you have a discrete search space, for example:
 
 ```python
 search_space = {
     'a': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],  # list of ordered numbers: ints
-    'b': [-4.4, -2.5, -1.5, 0.0, 3.7],    # list of ordered numbers: floats
-    'c': [128, 256, 512, 1024],           # another list of ordered numbers
-    'd': ['typeX', 'typeY', 'typeZ'],     # categorical variable
+    'b': [-3.5, -0.1, 0.0, 2.5, 10.0],    # list of ordered numbers: floats
+    'c': [256, 512, 1024, 2048],          # another list of ordered numbers
+    'd': ['var_A', 'var_B', 'var_C'],     # categorical variable
     'e': [True, False],                   # boolean variable
     # ... (add as many as you need)
 }
@@ -30,7 +30,11 @@ search_space = {
 and if you can evaluate points from it:
 
 ```python
-spoint = {'a': 4, 'b': 0.0, 'c': 512, 'd': 'typeZ', 'e': False}
+def evaluation_function(spoint: dict) -> float:
+    # your code (e.g. model fit)
+    return y  # score (e.g. model accuracy)
+
+spoint = {'a': 4, 'b': 0.0, 'c': 512, 'd': 'var_C', 'e': False}
 y = evaluation_function(spoint)
 print(y)  # 0.123456
 ```
@@ -42,10 +46,9 @@ from spaceopt import SpaceOpt
 
 spaceopt = SpaceOpt(search_space=search_space,
                     target_name='y',
-                    objective='min')     # or 'max'
+                    objective='max')     # or 'min'
 
 for iteration in range(200):
-
     if iteration < 20:
         spoint = spaceopt.get_random()   # exploration
     else:
@@ -73,12 +76,10 @@ spoint = spaceopt.fit_predict(sample_size=100)
 
 - add your own evaluation points to SpaceOpt:
 ```python
-my_spoint = {'a': 8, 'b': -4.4, 'c': 256, 'd': 'typeY', 'e': False}
+my_spoint = {'a': 8, 'b': -3.5, 'c': 256, 'd': 'var_B', 'e': False}
 my_spoint['y'] = evaluation_function(my_spoint)
 spaceopt.append_evaluated_spoint(my_spoint)
 ```
-
-- be creative about how to use SpaceOpt;
 
 - learn more by reading the code, there are only 3 classes: [SpaceOpt](https://github.com/ar-nowaczynski/spaceopt/blob/master/spaceopt/optimizer.py), [Space](https://github.com/ar-nowaczynski/spaceopt/blob/master/spaceopt/space.py) and [Variable](https://github.com/ar-nowaczynski/spaceopt/blob/master/spaceopt/variable.py).
 
