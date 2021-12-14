@@ -1,3 +1,4 @@
+from typing import Dict
 from spaceopt import SpaceOpt
 
 
@@ -30,7 +31,7 @@ def evaluation_function(spoint: dict) -> float:
     return y
 
 
-def search_space() -> dict:
+def search_space() -> Dict[str, list]:
     return {
         'a': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         'b': [-5.5, -4.4, -3.3, -2.2, -1.1, 0.0, 1.1, 2.2, 3.3, 4.4, 5.5],
