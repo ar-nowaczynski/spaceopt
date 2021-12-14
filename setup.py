@@ -6,7 +6,7 @@ README_TEXT = README_PATH.read_text()
 
 setup(
     name="spaceopt",
-    version="0.1.4",
+    version="0.2.0",
     license="MIT",
     description="Search space optimization via gradient boosting regression",
     long_description=README_TEXT,
