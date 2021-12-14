@@ -21,7 +21,7 @@ search_space = {
     'a': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],  # list of ordered numbers: ints
     'b': [-3.5, -0.1, 0.0, 2.5, 10.0],    # list of ordered numbers: floats
     'c': [256, 512, 1024, 2048],          # another list of ordered numbers
-    'd': ['var_A', 'var_B', 'var_C'],     # categorical variable
+    'd': ['val_A', 'val_B', 'val_C'],     # categorical variable
     'e': [True, False],                   # boolean variable
     # ... (add as many as you need)
 }
@@ -34,7 +34,7 @@ def evaluation_function(spoint: dict) -> float:
     # your code (e.g. model fit)
     return y  # score (e.g. model accuracy)
 
-spoint = {'a': 4, 'b': 0.0, 'c': 512, 'd': 'var_C', 'e': False}
+spoint = {'a': 4, 'b': 0.0, 'c': 512, 'd': 'val_C', 'e': False}
 y = evaluation_function(spoint)
 print(y)  # 0.123456
 ```
@@ -46,13 +46,13 @@ from spaceopt import SpaceOpt
 
 spaceopt = SpaceOpt(search_space=search_space,
                     target_name='y',
-                    objective='max')     # or 'min'
+                    objective='maximize')  # or 'minimize'
 
 for iteration in range(200):
     if iteration < 20:
-        spoint = spaceopt.get_random()   # exploration
+        spoint = spaceopt.get_random()     # exploration
     else:
-        spoint = spaceopt.fit_predict()  # exploitation
+        spoint = spaceopt.fit_predict()    # exploitation
 
     spoint['y'] = evaluation_function(spoint)
     spaceopt.append_evaluated_spoint(spoint)
@@ -76,7 +76,7 @@ spoint = spaceopt.fit_predict(sample_size=100)
 
 - add your own evaluation points to SpaceOpt:
 ```python
-my_spoint = {'a': 8, 'b': -3.5, 'c': 256, 'd': 'var_B', 'e': False}
+my_spoint = {'a': 8, 'b': -3.5, 'c': 256, 'd': 'val_B', 'e': False}
 my_spoint['y'] = evaluation_function(my_spoint)
 spaceopt.append_evaluated_spoint(my_spoint)
 ```

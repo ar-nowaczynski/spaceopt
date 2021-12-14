@@ -1,74 +1,62 @@
 from spaceopt import SpaceOpt
 
 
-def evaluation_function(spoint):
+def evaluation_function(spoint: dict) -> float:
     ''' Synthetic evaluation function.
 
     Global minimum is at:
-    {
-        'a': 5.0,
-        'b': -5.5,
-        'c': 1024,
-        'd': 'typeY',
-        'e': 'False',
-        'f': 10000,
-    },
+
+        {
+            'a': 5.0,
+            'b': -5.5,
+            'c': 1024,
+            'd': 'val_B',
+            'e': 'False',
+            'f': 10000,
+        }
+
     with value:
-        'y': -6.29.
+
+        'y': -6.29
 
     '''
-    a = spoint['a']
-    b = spoint['b']
-    c = spoint['c']
-    d = spoint['d']
-    e = spoint['e']
-    f = spoint['f']
-    xa = abs(a - 5) / 10
-    xb = b
-    xc = {
-        128: 0.7,
-        256: 0.72,
-        512: 0.68,
-        1024: 0.78,
-    }[c]
-    xd = {
-        'typeX': -1,
-        'typeY': -2,
-        'typeZ': 0,
-    }[d]
-    xe = 0.1234 if e else 0.0
-    assert f == 10000
+    xa = abs(spoint['a'] - 5) / 10
+    xb = spoint['b']
+    xc = {128: 0.7, 256: 0.72, 512: 0.68, 1024: 0.78}[spoint['c']]
+    xd = {'val_A': -1, 'val_B': -2, 'val_C': 0}[spoint['d']]
+    xe = 0.1234 if spoint['e'] else 0.0
+    assert spoint['f'] == 10000
     y = (xa + xb) * xc + xd + xe
     return y
 
 
-def search_space():
+def search_space() -> dict:
     return {
         'a': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         'b': [-5.5, -4.4, -3.3, -2.2, -1.1, 0.0, 1.1, 2.2, 3.3, 4.4, 5.5],
         'c': [128, 256, 512, 1024],
-        'd': ['typeX', 'typeY', 'typeZ'],
+        'd': ['val_A', 'val_B', 'val_C'],
         'e': [True, False],
         'f': [10000],
     }
 
 
-def main():
-
+def main() -> None:
     spaceopt = SpaceOpt(search_space=search_space(),
                         target_name='y',
-                        objective='min')
+                        objective='minimize')
     print(spaceopt)
 
     best_spoint = None
-    best_y = 123456789.0
+    best_y = float('inf')
 
     for iteration in range(1, spaceopt.space.size + 1):
-
         if iteration <= 10:
+            # exploration
             spoint = spaceopt.get_random(num_spoints=1, sample_size=1000)
             spoint_type = 'random'
         else:
+            # exploitation
             spoint = spaceopt.fit_predict(num_spoints=1, sample_size=1000)
             spoint_type = 'fit_predict'
 
