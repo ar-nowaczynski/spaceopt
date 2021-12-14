@@ -10,7 +10,7 @@ def evaluation_function(spoint: dict) -> float:
             'a': 5.0,
             'b': -5.5,
             'c': 1024,
-            'd': 'var_B',
+            'd': 'val_B',
             'e': 'False',
             'f': 10000,
         }
@@ -23,7 +23,7 @@ def evaluation_function(spoint: dict) -> float:
     xa = abs(spoint['a'] - 5) / 10
     xb = spoint['b']
     xc = {128: 0.7, 256: 0.72, 512: 0.68, 1024: 0.78}[spoint['c']]
-    xd = {'var_A': -1, 'var_B': -2, 'var_C': 0}[spoint['d']]
+    xd = {'val_A': -1, 'val_B': -2, 'val_C': 0}[spoint['d']]
     xe = 0.1234 if spoint['e'] else 0.0
     assert spoint['f'] == 10000
     y = (xa + xb) * xc + xd + xe
@@ -35,7 +35,7 @@ def search_space() -> dict:
         'a': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         'b': [-5.5, -4.4, -3.3, -2.2, -1.1, 0.0, 1.1, 2.2, 3.3, 4.4, 5.5],
         'c': [128, 256, 512, 1024],
-        'd': ['var_A', 'var_B', 'var_C'],
+        'd': ['val_A', 'val_B', 'val_C'],
         'e': [True, False],
         'f': [10000],
     }
