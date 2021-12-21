@@ -1,4 +1,4 @@
-# SpaceOpt: optimize discrete search space via gradient boosting regression
+# SpaceOpt: optimize discrete search spaces via gradient boosting regression
 
 [![Python](https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9-blue)](https://www.python.org/downloads/)
 [![PyPI version](https://img.shields.io/pypi/v/spaceopt?color=1)](https://pypi.org/project/spaceopt/)
@@ -21,7 +21,7 @@ search_space = {
     'a': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],  # list of ordered numbers: ints
     'b': [-3.5, -0.1, 0.0, 2.5, 10.0],    # list of ordered numbers: floats
     'c': [256, 512, 1024, 2048],          # another list of ordered numbers
-    'd': ['optA', 'optB', 'optC'],        # categorical variable
+    'd': ['ABC', 'IJK', 'XYZ'],           # categorical variable
     'e': [True, False],                   # boolean variable
     # ... (add as many as you need)
 }
@@ -34,7 +34,7 @@ def evaluation_function(spoint: dict) -> float:
     # your code (e.g. model fit)
     return y  # score (e.g. model accuracy)
 
-spoint = {'a': 4, 'b': 0.0, 'c': 512, 'd': 'optC', 'e': False}
+spoint = {'a': 4, 'b': 0.0, 'c': 512, 'd': 'XYZ', 'e': False}
 y = evaluation_function(spoint)
 print(y)  # 0.123456
 ```
@@ -76,7 +76,7 @@ spoint = spaceopt.fit_predict(sample_size=100)
 
 - add your own evaluation points to SpaceOpt:
 ```python
-my_spoint = {'a': 8, 'b': -3.5, 'c': 256, 'd': 'optB', 'e': False}
+my_spoint = {'a': 8, 'b': -3.5, 'c': 256, 'd': 'IJK', 'e': False}
 my_spoint['y'] = evaluation_function(my_spoint)
 spaceopt.append_evaluated_spoint(my_spoint)
 ```
