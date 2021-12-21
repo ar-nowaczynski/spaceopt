@@ -8,7 +8,7 @@ setup(
     name="spaceopt",
     version="0.2.0",
     license="MIT",
-    description="Search space optimization via gradient boosting regression",
+    description="Optimize discrete search spaces via gradient boosting regression",
     long_description=README_TEXT,
     long_description_content_type="text/markdown",
     author="Arkadiusz Nowaczyński",
