@@ -10,7 +10,7 @@ def search_space() -> Dict[str, list]:
         "a": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         "b": [-5.5, -4.4, -3.3, -2.2, -1.1, 0.0, 1.1, 2.2, 3.3, 4.4, 5.5],
         "c": [128, 256, 512, 1024],
-        "d": ["val_A", "val_B", "val_C"],
+        "d": ["ABC", "IJK", "XYZ"],
         "e": [True, False],
         "f": [10000],
     }
@@ -51,17 +51,17 @@ def test_Space_categorical_names() -> None:
 def test_Space_verify_spoint() -> None:
     space = Space(search_space=search_space())
 
-    spoint = {"a": 16, "b": 3.3, "d": "val_A", "e": False}
+    spoint = {"a": 16, "b": 3.3, "d": "ABC", "e": False}
     try:
         space.verify_spoint(spoint)
     except Exception as e:
         assert isinstance(e, ValueError)
         assert str(e) == (
-            "spoint={'a': 16, 'b': 3.3, 'd': 'val_A', 'e': False}"
+            "spoint={'a': 16, 'b': 3.3, 'd': 'ABC', 'e': False}"
             " should have variable named 'c'."
         )
 
-    spoint = {"a": 16, "b": 3.3, "c": 512.0, "d": "val_A", "e": False}
+    spoint = {"a": 16, "b": 3.3, "c": 512.0, "d": "ABC", "e": False}
     try:
         space.verify_spoint(spoint)
     except Exception as e:
@@ -71,7 +71,7 @@ def test_Space_verify_spoint() -> None:
             " but it should be of type <class 'int'>."
         )
 
-    spoint = {"a": 16, "b": 3.3, "c": 700, "d": "val_A", "e": False}
+    spoint = {"a": 16, "b": 3.3, "c": 700, "d": "ABC", "e": False}
     try:
         space.verify_spoint(spoint)
     except Exception as e:
@@ -105,7 +105,7 @@ def test_Space__str__() -> None:
         "    ),\n"
         "    Variable(\n"
         "        name='d',\n"
-        "        values=['val_A', 'val_B', 'val_C'],\n"
+        "        values=['ABC', 'IJK', 'XYZ'],\n"
         "        vtype=<class 'str'>,\n"
         "        is_categorical=True\n"
         "    ),\n"

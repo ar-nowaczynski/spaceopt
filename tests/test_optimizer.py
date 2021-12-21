@@ -10,7 +10,7 @@ def search_space() -> Dict[str, list]:
         "a": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         "b": [-5.5, -4.4, -3.3, -2.2, -1.1, 0.0, 1.1, 2.2, 3.3, 4.4, 5.5],
         "c": [128, 256, 512, 1024],
-        "d": ["val_A", "val_B", "val_C"],
+        "d": ["ABC", "IJK", "XYZ"],
         "e": [True, False],
         "f": [10000],
     }
@@ -78,18 +78,18 @@ def test_SpaceOpt_append_evaluated_spoint() -> None:
 
     try:
         spaceopt.append_evaluated_spoint(
-            {"a": 16, "b": 3.3, "c": 512, "d": "val_A", "e": False, "f": 10000}
+            {"a": 16, "b": 3.3, "c": 512, "d": "ABC", "e": False, "f": 10000}
         )
     except Exception as e:
         assert isinstance(e, ValueError)
         assert str(e) == (
-            "spoint={'a': 16, 'b': 3.3, 'c': 512, 'd': 'val_A', 'e': False, 'f': 10000}"
+            "spoint={'a': 16, 'b': 3.3, 'c': 512, 'd': 'ABC', 'e': False, 'f': 10000}"
             " is not evaluated, target_name='y' is not found."
         )
 
     try:
         spaceopt.append_evaluated_spoint(
-            {"a": 16, "b": 3.3, "c": 512, "d": "val_A", "e": False, "f": 10000, "y": 1}
+            {"a": 16, "b": 3.3, "c": 512, "d": "ABC", "e": False, "f": 10000, "y": 1}
         )
     except Exception as e:
         assert isinstance(e, TypeError)
@@ -99,7 +99,7 @@ def test_SpaceOpt_append_evaluated_spoint() -> None:
         )
 
     spaceopt.append_evaluated_spoint(
-        {"a": 16, "b": 3.3, "c": 512, "d": "val_A", "e": False, "f": 10000, "y": 1.0}
+        {"a": 16, "b": 3.3, "c": 512, "d": "ABC", "e": False, "f": 10000, "y": 1.0}
     )
 
 
@@ -316,7 +316,7 @@ def test_SpaceOpt__str__() -> None:
         "        ),\n"
         "        Variable(\n"
         "            name='d',\n"
-        "            values=['val_A', 'val_B', 'val_C'],\n"
+        "            values=['ABC', 'IJK', 'XYZ'],\n"
         "            vtype=<class 'str'>,\n"
         "            is_categorical=True\n"
         "        ),\n"
