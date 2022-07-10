@@ -6,9 +6,9 @@ README_TEXT = README_PATH.read_text()
 
 setup(
     name="spaceopt",
-    version="0.2.1",
+    version="0.2.2",
     license="MIT",
-    description="Optimize discrete search spaces via gradient boosting regression",
+    description="Hyperparameter optimization via gradient boosting regression",
     long_description=README_TEXT,
     long_description_content_type="text/markdown",
     author="Arkadiusz Nowaczyński",

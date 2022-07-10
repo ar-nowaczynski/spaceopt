@@ -1,10 +1,10 @@
-# SpaceOpt: optimize discrete search spaces via gradient boosting regression
+# SpaceOpt: hyperparameter optimization via gradient boosting regression
 
 [![Python](https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9-blue)](https://www.python.org/downloads/)
 [![PyPI version](https://img.shields.io/pypi/v/spaceopt?color=1)](https://pypi.org/project/spaceopt/)
 [![license](https://img.shields.io/pypi/l/spaceopt)](https://github.com/ar-nowaczynski/spaceopt)
 
-SpaceOpt is an optimization algorithm for discrete search spaces that uses gradient boosting regression to find the most promising candidates for evaluation by predicting their evaluation score. Training data is gathered sequentially and random or human-guided exploration can be easily incorporated at any stage.
+SpaceOpt is a hyperparameter optimization algorithm that uses gradient boosting regression to find the most promising candidates for the next trial by predicting their evaluation score.
 
 ## Installation
 
@@ -14,7 +14,7 @@ $ pip install spaceopt
 
 ## Usage
 
-If you have a discrete search space, for example:
+1. Define a discrete hyperparameter search space, for example:
 
 ```python
 search_space = {
@@ -27,7 +27,7 @@ search_space = {
 }
 ```
 
-and if you can evaluate points from it:
+2. Define your evaluation function:
 
 ```python
 def evaluation_function(spoint: dict) -> float:
@@ -36,10 +36,9 @@ def evaluation_function(spoint: dict) -> float:
 
 spoint = {'a': 4, 'b': 0.0, 'c': 512, 'd': 'XYZ', 'e': False}
 y = evaluation_function(spoint)
-print(y)  # 0.123456
 ```
 
-and if you want to find points that maximize or minimize your evaluation function, <b>in a better way than random search</b>, then use SpaceOpt:
+3. Use SpaceOpt for a hyperparameter optimization:
 
 ```python
 from spaceopt import SpaceOpt
@@ -69,12 +68,13 @@ spoints = spaceopt.get_random(num_spoints=2)
 spoints = spaceopt.fit_predict(num_spoints=5)
 ```
 
-- control exploitation behaviour by adjusting `sample_size` (default=10000), which is the number of candidates sampled for ranking (decreasing `sample_size` increses exploration):
+- control exploration vs. exploitation behaviour by adjusting `sample_size` (default=10000), which is the number of candidates sampled for ranking:
 ```python
-spoint = spaceopt.fit_predict(sample_size=100)
+spoint = spaceopt.fit_predict(sample_size=1000)  # decreasing `sample_size` increses exploration
+spoint = spaceopt.fit_predict(sample_size=100000)  # increasing `sample_size` increses exploitation
 ```
 
-- add your own evaluation points to SpaceOpt:
+- add manually selected evaluation points to SpaceOpt:
 ```python
 my_spoint = {'a': 8, 'b': -3.5, 'c': 256, 'd': 'IJK', 'e': False}
 my_spoint['y'] = evaluation_function(my_spoint)
