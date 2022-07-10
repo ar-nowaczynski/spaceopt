@@ -1,10 +1,10 @@
-# SpaceOpt: optimize discrete search spaces via gradient boosting regression
+# SpaceOpt: hyperparameter optimization via gradient boosting regression
 
 [![Python](https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9-blue)](https://www.python.org/downloads/)
 [![PyPI version](https://img.shields.io/pypi/v/spaceopt?color=1)](https://pypi.org/project/spaceopt/)
 [![license](https://img.shields.io/pypi/l/spaceopt)](https://github.com/ar-nowaczynski/spaceopt)
 
-SpaceOpt is an optimization algorithm for discrete search spaces that uses gradient boosting regression to find the most promising candidates for evaluation by predicting their evaluation score. Training data is gathered sequentially and random or human-guided exploration can be easily incorporated at any stage.
+SpaceOpt is a hyperparameter optimization algorithm that uses gradient boosting regression to find the most promising candidates for evaluation by predicting their evaluation score.
 
 ## Installation
 
@@ -14,7 +14,7 @@ $ pip install spaceopt
 
 ## Usage
 
-If you have a discrete search space, for example:
+If you have a discrete hyperparameter search space, for example:
 
 ```python
 search_space = {
